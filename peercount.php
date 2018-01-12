@@ -39,7 +39,7 @@ if (isset($_GET['view'])) {
 
 // Include EasyBitcoin library and set up connection
 require_once './php/easybitcoin.php';
-$terracoin = new Terracoin($config['rpc_user'], $config['rpc_pass'], $config['rpc_host'], $config['rpc_port']);
+$terracoin = new Bitcoin($config['rpc_user'], $config['rpc_pass'], $config['rpc_host'], $config['rpc_port']);
 
 // Setup SSL if configured
 if ($config['rpc_ssl'] === true) {
