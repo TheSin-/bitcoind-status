@@ -83,7 +83,7 @@ function getData($from_cache = false)
             $data['masternode_waller_info'] = $terracoin->masternode('list', 'status', $vin);
             $data['masternode']['status'] = $data['masternode_waller_info'][$vin];
             $data['masternode']['count'] = $terracoin->masternode('count');
-            $data['masternode']['enabled] = $terracoin->masternode('count', 'enabled');
+            $data['masternode']['enabled'] = $terracoin->masternode('count', 'enabled');
         }
     }
 
