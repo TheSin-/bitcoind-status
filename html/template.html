@@ -116,7 +116,7 @@
           <span class="label">Node Height:</span> <?php echo $data['blocks']; ?>
       </p>
 <?php if (isset($data['max_height']) === true) { ?>
-      <p class="stat"><span class="label">Network Height:</span> <?php echo $data['max_height']; ?></p>
+      <p class="stat"><span class="label">Network Height:</span> <?php echo number_format($data['max_height'],0); ?></p>
 <?php } ?>
       <p class="stat"><span class="label">Difficulty:</span> <?php echo number_format($data['difficulty'],3); ?></p>
 <?php if (isset($config['display_testnet']) && $config['display_testnet']) { ?>
@@ -128,7 +128,7 @@
 <?php if (isset($config['display_version']) && $config['display_version']) { ?>
       <p class="stat"><span class="label">Node Version:</span> <?php echo preg_replace(array('/\//','/:/'),array('',' '),$data['net_info']['subversion']); ?></p>
 <?php } ?>
-<?php if (isset($data['display_masternode']) === true) { ?>
+<?php if ($data['display_masternode'] === true) { ?>
       <p class="stat"><span class="label">Masternode Status:</span> <?php if (isset($data['masternode']['status'])) { echo $data['masternode']['status']; } else { echo "Unavailable"; } ?></p>
       <p class="stat"><span class="label">Masternodes Enabled:</span> <?php if (isset($data['masternode']['enabled'])) { echo $data['masternode']['enabled']; } else { echo "Unavailable"; } ?> of <?php if (isset($data['masternode']['count'])) { echo $data['masternode']['count']; } else { echo "Unavailable"; } ?> of </p>
 <?php } ?>
