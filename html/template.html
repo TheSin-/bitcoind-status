@@ -123,11 +123,11 @@
 <?php } else { ?>
       <p class="stat"><span class="label">Number of Connections:</span> <?php echo $data['connections']; ?></p>
 <?php if ($data['display_connection_chart'] === true) { ?>
-      <div id="connection_chart" style="width: 100%; height: 20%"></div>
+      <div id="connection_chart" style="width: 100%;"></div>
 <?php } ?>
       <p class="stat"><span class="label">Number of Peers:</span> <?php echo count($data['peers']); ?></p>
 <?php if ($data['display_peer_chart'] === true) { ?>
-      <div id="peer_chart" style="width: 100%; height: 20%"></div>
+      <div id="peer_chart" style="width: 100%;"></div>
 <?php } ?>
       <p class="stat">
           <span class="label">Node Height:</span> <?php echo $data['blocks']; ?>
@@ -149,7 +149,7 @@
       <p class="stat"><span class="label">Masternode Status:</span> <?php if (isset($data['masternode']['status'])) { echo $data['masternode']['status']; } else { echo "Not a masternode"; } ?></p>
       <p class="stat"><span class="label">Masternodes Enabled:</span> <?php if (isset($data['masternode']['enabled'])) { echo $data['masternode']['enabled']; } else { echo "Unavailable"; } ?> of <?php if (isset($data['masternode']['count'])) { echo $data['masternode']['count']; } else { echo "Unavailable"; } ?></p>
 <?php if ($data['display_masternode_chart'] === true) { ?>
-      <div id="masternode_chart" style="width: 100%; height: 20%"></div>
+      <div id="masternode_chart" style="width: 100%;"></div>
 <?php } ?>
 <?php } ?>
 <?php if (isset($data['terracoind_uptime'])) { ?>
