@@ -134,7 +134,7 @@
       <p class="stat"><span class="label">Masternodes Enabled:</span> <?php if (isset($data['masternode']['enabled'])) { echo $data['masternode']['enabled']; } else { echo "Unavailable"; } ?> of <?php if (isset($data['masternode']['count'])) { echo $data['masternode']['count']; } else { echo "Unavailable"; } ?> of </p>
 <?php } ?>
 <?php if (isset($data['terracoind_uptime'])) { ?>
-      <p class="stat"><span class="label">Terracoin Daemon Uptime:</span> <?php echo $data['terracoind_uptime']; ?></p>
+      <p class="stat"><span class="label">Daemon Uptime:</span> <?php echo $data['terracoind_uptime']; ?></p>
 <?php } ?>
 <?php if ((isset($data['ip_location'])) && (strcmp($data['ip_location']['country_code'], 'blank') != 0)) { ?>
       <p class="stat"><span class="label">Node Location:</span> <img src="img/blank.gif" class="flag flag-<?php echo strtolower($data['ip_location']['country_code']); ?>" alt="<?php echo $data['ip_location']['country_name']; ?>" /> <?php echo $data['ip_location']['country_name']; ?></p>
