@@ -48,8 +48,9 @@ if ($config['rpc_ssl'] === true) {
 
 // Get data via RPC
 $count = array(
-	'count' => $terracoin->masternode('count'),
-	'enabled' => $terracoin->masternode('count', 'enabled'),
+    'time'     => time(),
+    'count' => $terracoin->masternode('count'),
+    'enabled' => $terracoin->masternode('count', 'enabled'),
 );
 
 // Insert data
