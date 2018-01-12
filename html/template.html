@@ -19,7 +19,7 @@
   <script src="js/sorttable.js"></script>
   <script src="js/trc-status.js"></script>
 <?php if (is_file('./php/google_analytics.inc')) { include './php/google_analytics.inc'; } ?>
-<?php if (($data['display_connection_chart'] === true) || ($data['display_peer_chart'] === true)) { ?>
+<?php if (($data['display_connection_chart'] === true) || ($data['display_peer_chart'] === true) || ($data['display_masternode_chart'] === true)) { ?>
   <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
   <script type="text/javascript">
       $(window).resize(function() {
@@ -35,6 +35,9 @@
 <?php } ?>
 <?php if ($data['display_peer_chart'] === true) { ?>
         drawPeerChart();
+<?php } ?>
+<?php if ($data['display_masternode_chart'] === true) { ?>
+        drawMasternodeChart();
 <?php } ?>
       });
   </script>
@@ -59,6 +62,18 @@
         var data = google.visualization.arrayToDataTable(peerChartData);
         var options = { title: 'Peer History', legend: { position: 'bottom' }};
         var chart = new google.visualization.LineChart(document.getElementById('peer_chart'));
+        chart.draw(data, options);
+      }
+  </script>
+<?php } ?>
+<?php if ($data['display_peer_chart'] === true) { ?>
+  <script type="text/javascript" src="chartdata.php?stat=masternode"></script>
+  <script type="text/javascript">
+      google.setOnLoadCallback(drawMasternodeChart);
+      function drawMasternodeChart() {
+        var data = google.visualization.arrayToDataTable(masternodeChartData);
+        var options = { title: 'Masternode History', legend: { position: 'bottom' }};
+        var chart = new google.visualization.LineChart(document.getElementById('masternode_chart'));
         chart.draw(data, options);
       }
   </script>
@@ -131,6 +146,9 @@
 <?php if (isset($config['display_masternode']) && $config['display_masternode']) { ?>
       <p class="stat"><span class="label">Masternode Status:</span> <?php if (isset($data['masternode']['status'])) { echo $data['masternode']['status']; } else { echo "Unavailable"; } ?></p>
       <p class="stat"><span class="label">Masternodes Enabled:</span> <?php if (isset($data['masternode']['enabled'])) { echo $data['masternode']['enabled']; } else { echo "Unavailable"; } ?> of <?php if (isset($data['masternode']['count'])) { echo $data['masternode']['count']; } else { echo "Unavailable"; } ?></p>
+<?php if ($data['display_masternode_chart'] === true) { ?>
+      <div id="masternode_chart" style="width: 100%; height: 20%"></div>
+<?php } ?>
 <?php } ?>
 <?php if (isset($data['terracoind_uptime'])) { ?>
       <p class="stat"><span class="label">Daemon Uptime:</span> <?php echo $data['terracoind_uptime']; ?></p>

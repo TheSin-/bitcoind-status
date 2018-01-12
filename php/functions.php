@@ -75,6 +75,7 @@ function getData($from_cache = false)
     }
 
     if ($config['display_masternode'] === true) {
+        $data['masternode'] = array();
         // Store network info in data array
         $data['masternode_status_info'] = $terracoin->masternode('status');
         $data['masternode_status'] = $data['masternode_status_info']['status'];
@@ -82,9 +83,9 @@ function getData($from_cache = false)
             $vin = preg_replace('/, /', '-', preg_replace('/., scriptSig=.*.$/', '', preg_replace('/^CTxIn.COutPoint./', '', $data['masternode_status_info']['vin'])));
             $data['masternode_waller_info'] = $terracoin->masternode('list', 'status', $vin);
             $data['masternode']['status'] = $data['masternode_waller_info'][$vin];
-            $data['masternode']['count'] = $terracoin->masternode('count');
-            $data['masternode']['enabled'] = $terracoin->masternode('count', 'enabled');
         }
+        $data['masternode']['count'] = $terracoin->masternode('count');
+        $data['masternode']['enabled'] = $terracoin->masternode('count', 'enabled');
     }
 
     // Store network info in data array

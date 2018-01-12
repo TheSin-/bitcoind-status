@@ -19,7 +19,7 @@ require_once './php/config.php';
 switch($_GET['stat']) {
 case 'connection':
     $data_file  = $config['stats_file'];
-    $min_points = $config['peercount_min_data_points'];
+    $min_points = 0;
     $headers    = array('Date','Connections');
     $prefixes   = array('new Date(','');
     $postfixes  = array('*1000)','');
@@ -38,6 +38,14 @@ case 'peer':
         $postfixes[] = '';
     }
 
+    break;
+
+case 'masternode':
+    $data_file  = $config['masternodecount_file'];
+    $min_points = 0;
+    $headers    = array('Date','Masternodes','Enabled');
+    $prefixes   = array('new Date(','','');
+    $postfixes  = array('*1000)','','');
     break;
 
 default:

@@ -38,6 +38,7 @@ Below are two example `crontab` entries to call the scripts every five minutes v
 ```
 */5 *  *   *   *  curl -Ssk http://127.0.0.1/stats.php > /dev/null
 */5 *  *   *   *  curl -Ssk http://127.0.0.1/peercount.php > /dev/null
+*/5 *  *   *   *  curl -Ssk http://127.0.0.1/masternodecount.php > /dev/null
 ```
 
 ## Node Profile Icons
@@ -147,6 +148,7 @@ The `config.php` file also contains lots of options to control how the applicati
 | `intro_text`               | String  | `not_set` | Introductory text to display above the node statistics.                                                         |
 | `display_chart`            | Boolean | `false`   | Displays a chart showing the stats collected by the stats.php script                                            |
 | `display_peer_chart`       | Boolean | `false`   | Displays a chart showing the mix of node versions connected to your node                                        |
+| `display_masternode_chart` | Boolean | `false`   | Displays a chart showing the enabled vs total masternodes                                                       |
 | `node_links`               | Array   | `array()` | Displays links to various other profiles for your node. Takes the form of a multidimensional array, see example |
 
 ### Stats
@@ -167,6 +169,13 @@ The `config.php` file also contains lots of options to control how the applicati
 | `peercount_max_age`         | String  | `604800`                     | Maximum age for host-count                                   |
 | `peercount_min_data_points` | Int     | `5`                          | Minimum data points to collect before displaying chart       |
 | `peercount_extra_nodes`     | Array   | `array()`                    | Key-Value array of extra node types to count (value = regex) |
+
+### Masternode Count Stats
+
+| Value                       | Type    | Default                      | Explanation                                                  |
+|-----------------------------|---------|------------------------------|--------------------------------------------------------------|
+| `masternodecount_file`      | String  | `/tmp/terracoind-mns.data`   | File to store masternode-count                               |
+| `masternodecount_max_age`   | String  | `604800`                     | Maximum age for masternode-count                             |
 
 ### Uptime
 

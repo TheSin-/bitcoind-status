@@ -54,6 +54,7 @@ $config = array(
   'intro_text'                => 'not_set',
   'display_chart'             => false,
   'display_peer_chart'        => false,
+  'display_masternode_chart'  => false,
   'node_links'                => array(),
 
   // Stats
@@ -68,6 +69,10 @@ $config = array(
   'peercount_max_age'         => '2592000',
   'peercount_min_data_points' => 5,
   'peercount_extra_nodes'     => array(),
+
+  // Masternode Count
+  'masternodecount_file'      => '/tmp/terracoind-mns.data',
+  'masternodecount_max_age'   => '2592000',
 
   // Uptime
   'display_terracoind_uptime' => false,
