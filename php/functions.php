@@ -123,6 +123,21 @@ function getData($from_cache = false)
         $data['terracoind_uptime'] = getProcessUptime($config['terracoind_process_name']);
     }
 
+    // Create handle
+    if ($config['display_max_height']) {
+        $remote_curl = curl_init();
+    }
+
+    // Get max height from masternode.terracoin.io
+    if ($config['display_max_height'] === true) {
+        if ($config['display_testnet'] === true) {
+            $data['max_height'] = 0;
+        } else {
+            $data['max_height'] = curlRequest("https://masternode.terracoin.io/height.php", $remote_curl);
+        }
+        $data['node_height_percent'] = round(($data['blocks']/$data['max_height'])*100, 1);
+    }
+
     if (($config['display_ip_location'] === true) || ($config['geolocate_peer_ip'] === true)) {
         curl_close($geo_curl);
     }
