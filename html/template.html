@@ -130,6 +130,7 @@
 <?php } ?>
       <p class="stat">
           <span class="label">Node Height:</span> <?php echo number_format($data['blocks'],0); ?>
+          <?php if($config['display_max_height'] === true){ ?> (<?php echo $data['node_height_percent'] ?>%)<?php } ?>
       </p>
 <?php if (isset($data['max_height']) === true) { ?>
       <p class="stat"><span class="label">Network Height:</span> <?php echo number_format($data['max_height'],0); ?></p>
