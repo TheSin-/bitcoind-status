@@ -48,7 +48,7 @@
       google.setOnLoadCallback(drawConnectionChart);
       function drawConnectionChart() {
         var data = google.visualization.arrayToDataTable(connectionChartData);
-        var options = { title: 'Connections History', legend: 'none'};
+        var options = { title: 'Connections History', legend: { position: 'bottom' }};
         var chart = new google.visualization.LineChart(document.getElementById('connection_chart'));
         chart.draw(data, options);
       }
