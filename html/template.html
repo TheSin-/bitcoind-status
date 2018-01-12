@@ -125,6 +125,7 @@
 <?php if ($data['display_connection_chart'] === true) { ?>
       <div id="connection_chart" style="width: 100%; height: 20%"></div>
 <?php } ?>
+      <p class="stat"><span class="label">Number of Peers:</span> <?php echo count($data['peers']); ?></p>
 <?php if ($data['display_peer_chart'] === true) { ?>
       <div id="peer_chart" style="width: 100%; height: 20%"></div>
 <?php } ?>
