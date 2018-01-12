@@ -1,8 +1,6 @@
-# bitcoind-status
+# terracoind-status
 
-[![Travis CI Status](https://travis-ci.org/craigwatson/bitcoind-status.svg?branch=master)](https://travis-ci.org/craigwatson/bitcoind-status)
-
-This is a small PHP application designed to display status and information from the Bitcoin node daemon.
+This is a small PHP application designed to display status and information from the Terracoin node daemon.
 
 #### Table of Contents
 
@@ -16,13 +14,9 @@ This is a small PHP application designed to display status and information from 
 
 To run the application, you will need:
 
-  * A Bitcoin node with RPC enabled.
+  * A Terracoin node with RPC enabled.
   * A web-server with PHP installed.
-  * The PHP `curl` module - this is used to make RPC calls to the Bitcoin daemon.
-
-### PHP Support
-
-This application has been tested with PHP 5.4, 5.5 and 5.6, as well as HHVM and Nightly PHP builds, via TravisCI.
+  * The PHP `curl` module - this is used to make RPC calls to the Terracoin daemon.
 
 ## Getting Started
 
@@ -77,16 +71,15 @@ To ignore any specific peer from appearing in the connections table. Write the I
 
 ## Peer Count Nodes
 
-The node count script automatically counts Core, Classic, Unlimited and BitcoinJ clients. To add more node types to the chart, simply add an entry into the `peercount_extra_nodes` array in `config.php`.
+To add more node types to the chart, simply add an entry into the `peercount_extra_nodes` array in `config.php`.
 
 The key of the entry is an internal-only identifier, and the value is the lower-case text that should be matched in order to increment the counter.
 
 ## Contributing
 
-Contributions and testing reports are extremely welcome. Please submit a pull request or issue on [GitHub](https://github.com/craigwatson/bitcoind-status), and make sure
-that your code conforms to the PEAR PHP coding standards (Travis CI will test your pull request when it's sent).
+Contributions and testing reports are extremely welcome. Please submit a pull request or issue on [GitHub](https://github.com/thesin-/terracoind-status), and make surei that your code conforms to the PEAR PHP coding standards.
 
-I accept tips via Bitcoin to 1N73BsKN2bubvRo9dXbUjwe4SBHW4j4j4B - if you would like to buy me a beer, please do!
+I accept tips via Terracoin to 1LMF4gAhwUX8TN6e5Ff6m89oZG2HRcg7jL - if you would like to buy me a beer, please do!
 
 ## Advanced Options
 
@@ -99,7 +92,7 @@ The `config.php` file also contains lots of options to control how the applicati
 | `rpc_user`   | String  | `rpcuser`   | Username for RPC calls             |
 | `rpc_pass`   | String  | `rpcpass`   | Password for RPC calls             |
 | `rpc_host`   | String  | `localhost` | Which RPC host to connect to       |
-| `rpc_port`   | String  | `8332`      | Port to use for the RPC connection |
+| `rpc_port`   | String  | `13332`     | Port to use for the RPC connection |
 | `rpc_ssl`    | Boolean | `false`     | Enables SSL for the RPC connection |
 | `rpc_ssl_ca` | String  | `null`      | The SSL CA chain file              |
 
@@ -107,8 +100,8 @@ The `config.php` file also contains lots of options to control how the applicati
 
 | Value                   | Type    | Default   | Explanation                                 |
 |-------------------------|---------|-----------|---------------------------------------------|
-| `display_donation_text` | Boolean | `false`    | Display text to encourage donations        |
-| `donation_address`      | String  | `not_set` | Bitcoin address to advertise for donations  |
+| `display_donation_text` | Boolean | `false`   | Display text to encourage donations         |
+| `donation_address`      | String  | `not_set` | Terracoin address to advertise for donations|
 | `donation_amount`       | String  | `0.001`   | Donation amount - not currently implemented |
 
 ### Peers
@@ -123,15 +116,15 @@ The `config.php` file also contains lots of options to control how the applicati
 
 ### Cache
 
-| Value               | Type    | Default                               | Explanation                                                          |
-|---------------------|---------|---------------------------------------|----------------------------------------------------------------------|
-| `cache_geo_data`    | Boolean | `true`                                | Enables caching of geolocation data                                  |
-| `geo_cache_file`    | String  | `/var/tmp/bitcoind-geolocation.cache` | File location for the geolocation cache                              |
-| `geo_cache_time`    | Int     | `604800`                              | Time in seconds until geolocation cache expires - defaults to 7 days |
-| `use_cache`         | Boolean | `true`                                | Enable cache                                                         |
-| `cache_file`        | String  | `/tmp/bitcoind-status.cache`          | File location to write to for cache                                  |
-| `max_cache_time`    | Int     | `300`                                 | Expiry time for cache                                                |
-| `nocache_whitelist` | Array   | `array('127.0.0.1')`                  | The IP addresses that are allowed to bypass or clear cache           |
+| Value               | Type    | Default                                 | Explanation                                                          |
+|---------------------|---------|-----------------------------------------|----------------------------------------------------------------------|
+| `cache_geo_data`    | Boolean | `true`                                  | Enables caching of geolocation data                                  |
+| `geo_cache_file`    | String  | `/var/tmp/terracoind-geolocation.cache` | File location for the geolocation cache                              |
+| `geo_cache_time`    | Int     | `604800`                                | Time in seconds until geolocation cache expires - defaults to 7 days |
+| `use_cache`         | Boolean | `true`                                  | Enable cache                                                         |
+| `cache_file`        | String  | `/tmp/terracoind-status.cache`          | File location to write to for cache                                  |
+| `max_cache_time`    | Int     | `300`                                   | Expiry time for cache                                                |
+| `nocache_whitelist` | Array   | `array('127.0.0.1')`                    | The IP addresses that are allowed to bypass or clear cache           |
 
 ### Geolocation
 
@@ -147,41 +140,41 @@ The `config.php` file also contains lots of options to control how the applicati
 | `display_ip`               | Boolean | `false`   | Display the server IP address                                                                                   |
 | `display_free_disk_space`  | Boolean | `false`   | Displayfree disk space                                                                                          |
 | `display_testnet`          | Boolean | `false`   | Display testnet status                                                                                          |
-| `display_version`          | Boolean | `true`    | Display node `bitcoind` version                                                                                 |
+| `display_masternode`       | Boolean | `false`   | Display masternode status                                                                                       |
+| `display_version`          | Boolean | `true`    | Display node `terracoind` version                                                                               |
 | `display_github_ribbon`    | Boolean | `true`    | Displays the 'Fork me on GitHub' ribbon                                                                         |
 | `display_max_height`       | Boolean | `false`   | Displays the node height as a percentage of network height                                                      |
-| `use_bitcoind_ip`          | Boolean | `true`    | Use the Bitcoin daemon to get the public IP, instead of `$_SERVER`                                              |
+| `use_terracoind_ip`        | Boolean | `true`    | Use the Terracoin daemon to get the public IP, instead of `$_SERVER`                                            |
 | `intro_text`               | String  | `not_set` | Introductory text to display above the node statistics.                                                         |
-| `display_bitnodes_info`    | Boolean | `false`   | Displays various information via the bitnodes.earn.com API                                                      |
 | `display_chart`            | Boolean | `false`   | Displays a chart showing the stats collected by the stats.php script                                            |
 | `display_peer_chart`       | Boolean | `false`   | Displays a chart showing the mix of node versions connected to your node                                        |
 | `node_links`               | Array   | `array()` | Displays links to various other profiles for your node. Takes the form of a multidimensional array, see example |
 
 ### Stats
 
-| Value                   | Type   | Default                     | Explanation                                            |
-|-------------------------|--------|-----------------------------|--------------------------------------------------------|
-| `stats_whitelist`       | Array  | `array('127.0.0.1')`        | Hosts that can run the stats script                    |
-| `stats_file`            | String | `/tmp/bitcoind-status.data` | File to store stats                                    |
-| `stats_max_age`         | String | `604800`                    | Maximum age for stats                                  |
-| `stats_min_data_points` | Int    | `5`                         | Minimum data points to collect before displaying chart |
+| Value                   | Type   | Default                       | Explanation                                            |
+|-------------------------|--------|-------------------------------|--------------------------------------------------------|
+| `stats_whitelist`       | Array  | `array('127.0.0.1')`          | Hosts that can run the stats script                    |
+| `stats_file`            | String | `/tmp/terracoind-status.data` | File to store stats                                    |
+| `stats_max_age`         | String | `604800`                      | Maximum age for stats                                  |
+| `stats_min_data_points` | Int    | `5`                           | Minimum data points to collect before displaying chart |
 
 ### Peer Count Stats
 
-| Value                       | Type    | Default                     | Explanation                                                  |
-|-----------------------------|---------|-----------------------------|--------------------------------------------------------------|
-| `peercount_whitelist`       | Array   | `array('127.0.0.1')`        | Hosts that can run the host-count script                     |
-| `peercount_file`            | String  | `/tmp/bitcoind-peers.data`  | File to store host-count                                     |
-| `peercount_max_age`         | String  | `604800`                    | Maximum age for host-count                                   |
-| `peercount_min_data_points` | Int     | `5`                         | Minimum data points to collect before displaying chart       |
-| `peercount_extra_nodes`     | Array   | `array()`                   | Key-Value array of extra node types to count (value = regex) |
+| Value                       | Type    | Default                      | Explanation                                                  |
+|-----------------------------|---------|------------------------------|--------------------------------------------------------------|
+| `peercount_whitelist`       | Array   | `array('127.0.0.1')`         | Hosts that can run the host-count script                     |
+| `peercount_file`            | String  | `/tmp/terracoind-peers.data` | File to store host-count                                     |
+| `peercount_max_age`         | String  | `604800`                     | Maximum age for host-count                                   |
+| `peercount_min_data_points` | Int     | `5`                          | Minimum data points to collect before displaying chart       |
+| `peercount_extra_nodes`     | Array   | `array()`                    | Key-Value array of extra node types to count (value = regex) |
 
 ### Uptime
 
-| Value                     | Type    | Default    | Explanation                                                 |
-|---------------------------|---------|------------|-------------------------------------------------------------|
-| `display_bitcoind_uptime` | Boolean | `true`     | Displays the uptime of the Bitcoin daemon                   |
-| `bitcoind_process_name`   | String  | `bitcoind` | Name to use when getting the bitcoin daemon process' uptime |
+| Value                       | Type    | Default      | Explanation                                                 |
+|-----------------------------|---------|--------------|-------------------------------------------------------------|
+| `display_terracoind_uptime` | Boolean | `true`       | Displays the uptime of the Terracoin daemon                   |
+| `terracoind_process_name`   | String  | `terracoind` | Name to use when getting the terracoin daemon process' uptime |
 
 ### System
 
@@ -199,6 +192,7 @@ The `config.php` file also contains lots of options to control how the applicati
 
 ## Licensing
 
+* Copyright (C) 2018 TheSin
 * Copyright (C) 2015 [Craig Watson](http://www.cwatson.org)
-* Distributed under the terms of the [Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0) - see [LICENSE file](https://github.com/craigwatson/bitcoind-status/blob/master/LICENSE) for details.
+* Distributed under the terms of the [Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0) - see [LICENSE file](https://github.com/thesin-/terracoind-status/blob/master/LICENSE) for details.
 * [EasyBitcoin-PHP library](https://github.com/aceat64/EasyBitcoin-PHP) is reproduced under the terms of the [MIT licence](http://opensource.org/licenses/MIT) and is used from commit [670414e](https://github.com/aceat64/EasyBitcoin-PHP/tree/670414e1b733e11bb7bdf4fcb17169853301716b).

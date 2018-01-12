@@ -34,9 +34,9 @@ node default {
     fastcgi  => '127.0.0.1:9000',
   }
 
-  # == Bitcoin Daemon
+  # == Terracoin Daemon
 
-  class { '::bitcoind':
+  class { '::terracoind':
     rpcallowip          => ['127.0.0.1'],
     rpcpassword         => 'statustest',
     rpcuser             => 'status',
@@ -44,13 +44,13 @@ node default {
     disablewallet       => true,
   }
 
-  cron { 'bitcoind_stats':
+  cron { 'terracoind_stats':
     command => '/usr/bin/curl -Ssk http://127.0.0.1/stats.php > /dev/null',
     user    => 'root',
     minute  => '*/5',
   }
 
-  cron { 'bitcoind_peer_stats':
+  cron { 'terracoind_peer_stats':
     command => '/usr/bin/curl -Ssk http://127.0.0.1/peercount.php > /dev/null',
     user    => 'root',
     minute  => '*/5',

@@ -1,18 +1,18 @@
 <?php
 /**
- * Bitcoin Status Page
+ * Terracoin Status Page
  *
  * @category File
- * @package  BitcoinStatus
+ * @package  TerracoinStatus
  * @author   Craig Watson <craig@cwatson.org>
  * @license  https://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @link     https://github.com/craigwatson/bitcoind-status
+ * @link     https://github.com/thesin-/terracoind-status
  */
 
 $curl_requests = 0;
 
 /**
- * Connects to Bitcoin daemon and retrieves information, then writes to cache
+ * Connects to Terracoin daemon and retrieves information, then writes to cache
  *
  * @param string $from_cache Whether to get the data from cache or not
  *
@@ -43,20 +43,20 @@ function getData($from_cache = false)
 
     // Include EasyBitcoin library and set up connection
     include_once './php/easybitcoin.php';
-    $bitcoin = new Bitcoin($config['rpc_user'], $config['rpc_pass'], $config['rpc_host'], $config['rpc_port']);
+    $terracoin = new Bitcoin($config['rpc_user'], $config['rpc_pass'], $config['rpc_host'], $config['rpc_port']);
 
     // Setup SSL if configured
     if ($config['rpc_ssl'] === true) {
-        $bitcoin->setSSL($config['rpc_ssl_ca']);
+        $terracoin->setSSL($config['rpc_ssl_ca']);
     }
 
     // Get info
-    $data = $bitcoin->getinfo();
+    $data = $terracoin->getinfo();
 
     // Handle errors if they happened
     if (!$data) {
-        $return_data['error'] = $bitcoin->error;
-        $return_data['status'] = $bitcoin->status;
+        $return_data['error'] = $terracoin->error;
+        $return_data['status'] = $terracoin->status;
         $return_data['display_connection_chart'] = false;
         $return_data['display_peer_chart'] = false;
         writeToCache($return_data);
@@ -74,12 +74,25 @@ function getData($from_cache = false)
         $data['free_disk_space'] = getFreeDiskSpace($config['disk_space_mount_point']);
     }
 
+    if ($config['display_masternode'] === true) {
+        // Store network info in data array
+        $data['masternode_status_info'] = $terracoin->masternode('status');
+        $data['masternode_status'] = $data['masternode_status_info']['status'];
+        if ($data['masternode_status_info']['status'] == "Masternode successfully started") {
+            $vin = preg_replace('/, /', '-', preg_replace('/., scriptSig=.*.$/', '', preg_replace('/^CTxIn.COutPoint./', '', $data['masternode_status_info']['vin'])));
+            $data['masternode_waller_info'] = $terracoin->masternode('list', 'status', $vin);
+            $data['masternode']['status'] = $data['masternode_waller_info'][$vin];
+            $data['masternode']['count'] = $terracoin->masternode('count');
+            $data['masternode']['enabled] = $terracoin->masternode('count', 'enabled');
+        }
+    }
+
     // Store network info in data array
-    $data['net_info'] = $bitcoin->getnetworkinfo();
+    $data['net_info'] = $terracoin->getnetworkinfo();
 
     if ($config['display_ip'] === true) {
-        // Use bitcoind IP
-        if ($config['use_bitcoind_ip'] === true) {
+        // Use terracoind IP
+        if ($config['use_terracoind_ip'] === true) {
             $data['node_ip'] = $data['net_info']['localaddresses'][0]['address'];
         } else {
             $data['node_ip'] = $_SERVER['SERVER_ADDR'];
@@ -95,7 +108,7 @@ function getData($from_cache = false)
 
     // Add peer info
     if ($config['display_peer_info'] === true) {
-        $data['peers'] = parsePeers($bitcoin->getpeerinfo(), $geo_curl);
+        $data['peers'] = parsePeers($terracoin->getpeerinfo(), $geo_curl);
     }
 
     // Node geolocation
@@ -103,38 +116,9 @@ function getData($from_cache = false)
         $data['ip_location'] = getGeolocation($data['node_ip'], $geo_curl);
     }
 
-    // Bitcoin Daemon uptime
-    if (($config['display_bitcoind_uptime'] === true) && (strcmp(PHP_OS, "Linux") == 0)) {
-        $data['bitcoind_uptime'] = getProcessUptime($config['bitcoind_process_name']);
-    }
-
-    // Create handle
-    if ($config['display_max_height'] || $config['display_bitnodes_info']) {
-        $bitnodes_curl = curl_init();
-    }
-
-    // Get max height from bitnodes.earn.com
-    if ($config['display_max_height'] === true) {
-        if ($config['display_testnet'] === true) {
-            $exec_result = json_decode(curlRequest("https://testnet.blockexplorer.com/api/status?q=getBlockCount", $bitnodes_curl), true);
-            $data['max_height'] = $exec_result['blockcount'];
-        } else {
-            $exec_result = json_decode(curlRequest("https://bitnodes.earn.com/api/v1/snapshots/", $bitnodes_curl), true);
-            $data['max_height'] = $exec_result['results'][0]['latest_height'];
-        }
-        $data['node_height_percent'] = round(($data['blocks']/$data['max_height'])*100, 1);
-    }
-
-    // Get node info from bitnodes.earn.com
-    if ($config['display_bitnodes_info'] === true) {
-        $data['bitnodes_info'] = json_decode(curlRequest("https://bitnodes.earn.com/api/v1/nodes/" . $data['node_ip'] . "-8333/", $bitnodes_curl), true);
-        $latency = json_decode(curlRequest("https://bitnodes.earn.com/api/v1/nodes/" . $data['node_ip'] . "-8333/latency/", $bitnodes_curl), true);
-        $data['bitnodes_info']['latest_latency'] = $latency['daily_latency'][0]['v'];
-    }
-
-    // Close handles
-    if ($config['display_max_height'] || $config['display_bitnodes_info']) {
-        curl_close($bitnodes_curl);
+    // Terracoin Daemon uptime
+    if (($config['display_terracoind_uptime'] === true) && (strcmp(PHP_OS, "Linux") == 0)) {
+        $data['terracoind_uptime'] = getProcessUptime($config['terracoind_process_name']);
     }
 
     if (($config['display_ip_location'] === true) || ($config['geolocate_peer_ip'] === true)) {
@@ -343,7 +327,7 @@ function curlRequest($url, $curl_handle, $fail_on_error = false)
 
     curl_setopt($curl_handle, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl_handle, CURLOPT_USERAGENT, 'Bitcoin Node Status Page');
+    curl_setopt($curl_handle, CURLOPT_USERAGENT, 'Terracoin Node Status Page');
     curl_setopt($curl_handle, CURLOPT_URL, $url);
 
     $curl_requests++;

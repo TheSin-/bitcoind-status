@@ -1,12 +1,12 @@
 <?php
 /**
- * Bitcoin Status Page - Peer Stats
+ * Terracoin Status Page - Peer Stats
  *
  * @category File
- * @package  BitcoinStatus
+ * @package  TerracoinStatus
  * @author   Craig Watson <craig@cwatson.org>
  * @license  https://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @link     https://github.com/craigwatson/bitcoind-status
+ * @link     https://github.com/thesin-/terracoind-status
  */
 
  // Get config
@@ -39,22 +39,19 @@ if (isset($_GET['view'])) {
 
 // Include EasyBitcoin library and set up connection
 require_once './php/easybitcoin.php';
-$bitcoin = new Bitcoin($config['rpc_user'], $config['rpc_pass'], $config['rpc_host'], $config['rpc_port']);
+$terracoin = new Terracoin($config['rpc_user'], $config['rpc_pass'], $config['rpc_host'], $config['rpc_port']);
 
 // Setup SSL if configured
 if ($config['rpc_ssl'] === true) {
-    $bitcoin->setSSL($config['rpc_ssl_ca']);
+    $terracoin->setSSL($config['rpc_ssl_ca']);
 }
 
 // Get data via RPC
-$new_peers = $bitcoin->getpeerinfo();
+$new_peers = $terracoin->getpeerinfo();
 
 // Default types
 $default_types = array(
-  'classic'  => 'Classic',
-  'bitcoinj' => 'BitcoinJ',
-  'core'     => 'Satoshi',
-  'unlimited'=> 'Unlimited'
+  'core'     => 'Terracoin Core',
 );
 
 // If extra nodes are set, include them

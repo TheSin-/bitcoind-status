@@ -1,12 +1,12 @@
 <?php
 /**
- * Bitcoin Status Page
+ * Terracoin Status Page
  *
  * @category File
- * @package  BitcoinStatus
+ * @package  TerracoinStatus
  * @author   Craig Watson <craig@cwatson.org>
  * @license  https://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @link     https://github.com/craigwatson/bitcoind-status
+ * @link     https://github.com/thesin-/terracoind-status
  */
 
 if (!is_file('./php/config.php')) {

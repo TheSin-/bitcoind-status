@@ -1,12 +1,12 @@
 <?php
 /**
- * Bitcoin Status Page - Stats
+ * Terracoin Status Page - Stats
  *
  * @category File
- * @package  BitcoinStatus
+ * @package  TerracoinStatus
  * @author   Craig Watson <craig@cwatson.org>
  * @license  https://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
- * @link     https://github.com/craigwatson/bitcoind-status
+ * @link     https://github.com/thesin-/terracoind-status
  */
 
 require_once './php/config.php';
@@ -36,15 +36,15 @@ if (isset($_GET['view'])) {
 
 // Include EasyBitcoin library and set up connection
 require_once './php/easybitcoin.php';
-$bitcoin = new Bitcoin($config['rpc_user'], $config['rpc_pass'], $config['rpc_host'], $config['rpc_port']);
+$terracoin = new Bitcoin($config['rpc_user'], $config['rpc_pass'], $config['rpc_host'], $config['rpc_port']);
 
 // Setup SSL if configured
 if ($config['rpc_ssl'] === true) {
-    $bitcoin->setSSL($config['rpc_ssl_ca']);
+    $terracoin->setSSL($config['rpc_ssl_ca']);
 }
 
 // Get info and handle errors
-$new_raw_data = $bitcoin->getinfo();
+$new_raw_data = $terracoin->getinfo();
 if (!$new_raw_data) {
     die("RPC Error");
 }
