@@ -143,7 +143,6 @@ The `config.php` file also contains lots of options to control how the applicati
 | `display_masternode`       | Boolean | `false`   | Display masternode status                                                                                       |
 | `display_version`          | Boolean | `true`    | Display node `terracoind` version                                                                               |
 | `display_github_ribbon`    | Boolean | `true`    | Displays the 'Fork me on GitHub' ribbon                                                                         |
-| `display_max_height`       | Boolean | `false`   | Displays the node height as a percentage of network height                                                      |
 | `use_terracoind_ip`        | Boolean | `true`    | Use the Terracoin daemon to get the public IP, instead of `$_SERVER`                                            |
 | `intro_text`               | String  | `not_set` | Introductory text to display above the node statistics.                                                         |
 | `display_chart`            | Boolean | `false`   | Displays a chart showing the stats collected by the stats.php script                                            |

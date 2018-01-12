@@ -50,7 +50,6 @@ $config = array(
   'display_masternode'        => false,
   'display_version'           => true,
   'display_github_ribbon'     => false,
-  'display_max_height'        => true,
   'use_terracoind_ip'         => false,
   'intro_text'                => 'not_set',
   'display_chart'             => false,
