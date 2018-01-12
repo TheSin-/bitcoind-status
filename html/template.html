@@ -155,7 +155,7 @@
            <tr>
              <th>IP</th>
              <th>Time Connected</th>
-             <th>Protocol Version</th>
+             <th>Client / Protocol Version</th>
              <th>Last Send</th>
              <th>Last Receive</th>
              <th>Ping (ms)</th>
@@ -169,7 +169,7 @@
            <tr>
              <td><?php if(array_key_exists('geo_data',$peer)) { if(is_array($peer['geo_data'])) { if(strcmp($peer['geo_data']['country_code'], 'blank') != 0) { ?><img src="img/blank.gif" class="flag flag-<?php echo strtolower($peer['geo_data']['country_code']); ?>" title="<?php echo $peer['geo_data']['country_name']; ?>" alt="<?php echo $peer['geo_data']['country_name']; ?>" /><?php } } } ?> <?php echo $peer['addr']; ?></td>
              <td data-time="<?php echo $peer['conntime']; ?>"><?php echo elapsedTime($peer['conntime']); ?></td>
-             <td><?php echo $peer['version'] . ' ' . str_replace('/','',str_replace(':',' ',$peer['subver'])); ?></td>
+             <td><?php echo str_replace('/','',str_replace(':',' ',$peer['subver'])) . ' / ' $peer['version']; ?></td>
              <td data-time="<?php echo $peer['lastsend']; ?>"><?php echo elapsedTime($peer['lastsend']); ?></td>
              <td data-time="<?php echo $peer['lastrecv']; ?>"><?php echo elapsedTime($peer['lastrecv']); ?></td>
              <td><?php if(array_key_exists('pingtime',$peer)) { echo round(($peer['pingtime']*1000),2); } else { echo "Unavailable"; }?></td>
