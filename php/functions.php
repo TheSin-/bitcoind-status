@@ -78,7 +78,7 @@ function getData($from_cache = false)
         $data['masternode'] = array();
         // Store network info in data array
         $data['masternode_status_info'] = $terracoin->masternode('status');
-        $data['masternode_status'] = $data['masternode_status_info']['status'];
+        $data['masternode']['status'] = $data['masternode_status_info']['status'];
         if ($data['masternode_status_info']['status'] == "Masternode successfully started") {
             $vin = preg_replace('/, /', '-', preg_replace('/., scriptSig=.*.$/', '', preg_replace('/^CTxIn.COutPoint./', '', $data['masternode_status_info']['vin'])));
             $data['masternode_waller_info'] = $terracoin->masternode('list', 'status', $vin);
