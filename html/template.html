@@ -128,7 +128,7 @@
 <?php if (isset($config['display_version']) && $config['display_version']) { ?>
       <p class="stat"><span class="label">Node Version:</span> <?php echo preg_replace(array('/\//','/:/'),array('',' '),$data['net_info']['subversion']); ?></p>
 <?php } ?>
-<?php if ($data['display_masternode'] === true) { ?>
+<?php if (isset($config['display_masternode']) && $config['display_masternode']) { ?>
       <p class="stat"><span class="label">Masternode Status:</span> <?php if (isset($data['masternode']['status'])) { echo $data['masternode']['status']; } else { echo "Unavailable"; } ?></p>
       <p class="stat"><span class="label">Masternodes Enabled:</span> <?php if (isset($data['masternode']['enabled'])) { echo $data['masternode']['enabled']; } else { echo "Unavailable"; } ?> of <?php if (isset($data['masternode']['count'])) { echo $data['masternode']['count']; } else { echo "Unavailable"; } ?> of </p>
 <?php } ?>
