@@ -130,7 +130,7 @@
 <?php } ?>
 <?php if (isset($config['display_masternode']) && $config['display_masternode']) { ?>
       <p class="stat"><span class="label">Masternode Status:</span> <?php if (isset($data['masternode']['status'])) { echo $data['masternode']['status']; } else { echo "Unavailable"; } ?></p>
-      <p class="stat"><span class="label">Masternodes Enabled:</span> <?php if (isset($data['masternode']['enabled'])) { echo $data['masternode']['enabled']; } else { echo "Unavailable"; } ?> of <?php if (isset($data['masternode']['count'])) { echo $data['masternode']['count']; } else { echo "Unavailable"; } ?> of </p>
+      <p class="stat"><span class="label">Masternodes Enabled:</span> <?php if (isset($data['masternode']['enabled'])) { echo $data['masternode']['enabled']; } else { echo "Unavailable"; } ?> of <?php if (isset($data['masternode']['count'])) { echo $data['masternode']['count']; } else { echo "Unavailable"; } ?></p>
 <?php } ?>
 <?php if (isset($data['terracoind_uptime'])) { ?>
       <p class="stat"><span class="label">Daemon Uptime:</span> <?php echo $data['terracoind_uptime']; ?></p>
