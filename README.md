@@ -147,6 +147,7 @@ The `config.php` file also contains lots of options to control how the applicati
 | `use_terracoind_ip`        | Boolean | `true`    | Use the Terracoin daemon to get the public IP, instead of `$_SERVER`                                            |
 | `intro_text`               | String  | `not_set` | Introductory text to display above the node statistics.                                                         |
 | `display_chart`            | Boolean | `false`   | Displays a chart showing the stats collected by the stats.php script                                            |
+| `chart_min_data_points`    | Int     | `5`       | Minimum data points to collect before displaying chart                                                          |
 | `display_peer_chart`       | Boolean | `false`   | Displays a chart showing the mix of node versions connected to your node                                        |
 | `display_masternode_chart` | Boolean | `false`   | Displays a chart showing the enabled vs total masternodes                                                       |
 | `node_links`               | Array   | `array()` | Displays links to various other profiles for your node. Takes the form of a multidimensional array, see example |
@@ -158,7 +159,6 @@ The `config.php` file also contains lots of options to control how the applicati
 | `stats_whitelist`       | Array  | `array('127.0.0.1')`          | Hosts that can run the stats script                    |
 | `stats_file`            | String | `/tmp/terracoind-status.data` | File to store stats                                    |
 | `stats_max_age`         | String | `604800`                      | Maximum age for stats                                  |
-| `stats_min_data_points` | Int    | `5`                           | Minimum data points to collect before displaying chart |
 
 ### Peer Count Stats
 
@@ -167,7 +167,6 @@ The `config.php` file also contains lots of options to control how the applicati
 | `peercount_whitelist`       | Array   | `array('127.0.0.1')`         | Hosts that can run the host-count script                     |
 | `peercount_file`            | String  | `/tmp/terracoind-peers.data` | File to store host-count                                     |
 | `peercount_max_age`         | String  | `604800`                     | Maximum age for host-count                                   |
-| `peercount_min_data_points` | Int     | `5`                          | Minimum data points to collect before displaying chart       |
 | `peercount_extra_nodes`     | Array   | `array()`                    | Key-Value array of extra node types to count (value = regex) |
 
 ### Masternode Count Stats

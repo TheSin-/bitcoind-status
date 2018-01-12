@@ -59,6 +59,7 @@ function getData($from_cache = false)
         $return_data['status'] = $terracoin->status;
         $return_data['display_connection_chart'] = false;
         $return_data['display_peer_chart'] = false;
+        $return_data['display_masternode_chart'] = false;
         writeToCache($return_data);
         return $return_data;
     }
@@ -127,8 +128,9 @@ function getData($from_cache = false)
     }
 
     // Work out if we should display charts or not
-    $data['display_connection_chart'] = displayChart($config['display_chart'], $config['stats_file'], $config['stats_min_data_points']);
-    $data['display_peer_chart'] = displayChart($config['display_peer_chart'], $config['peercount_file'], $config['peercount_min_data_points']);
+    $data['display_connection_chart'] = displayChart($config['display_chart'], $config['stats_file'], $config['chart_min_data_points']);
+    $data['display_peer_chart'] = displayChart($config['display_peer_chart'], $config['peercount_file'], $config['chart_min_data_points']);
+    $data['display_masternode_chart'] = displayChart($config['display_masternode_chart'], $config['masternodecount_file'], $config['chart_min_data_points']);
 
     // Write geolocation cache
     if ($config['cache_geo_data'] === true) {

@@ -53,6 +53,7 @@ $config = array(
   'use_terracoind_ip'         => false,
   'intro_text'                => 'not_set',
   'display_chart'             => false,
+  'chart_min_data_points'     => 5,
   'display_peer_chart'        => false,
   'display_masternode_chart'  => false,
   'node_links'                => array(),
@@ -61,13 +62,11 @@ $config = array(
   'stats_whitelist'           => array('127.0.0.1'),
   'stats_file'                => '/var/tmp/terracoind-status.data',
   'stats_max_age'             => '604800',
-  'stats_min_data_points'     => 5,
 
   // Node Count
   'peercount_whitelist'       => array('127.0.0.1'),
   'peercount_file'            => '/var/tmp/terracoind-peers.data',
   'peercount_max_age'         => '2592000',
-  'peercount_min_data_points' => 5,
   'peercount_extra_nodes'     => array(),
 
   // Masternode Count
