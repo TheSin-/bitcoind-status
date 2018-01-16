@@ -164,7 +164,7 @@
       <p class="stat"><span class="label">Node Version:</span> <?php echo preg_replace(array('/\//','/:/'),array('',' '),$data['net_info']['subversion']); ?></p>
 <?php } ?>
       <p class="stat"><span class="label">Superblocks:</span> Last: <?php if (isset($data['governance']['lastsuperblock'])) { echo number_format($data['governance']['lastsuperblock'],0); } else { echo "N/A"; } ?>, Next: <?php if (isset($data['governance']['nextsuperblock'])) { echo number_format($data['governance']['nextsuperblock'],0); } else { echo "N/A"; } ?> <?php if (isset($data['governance']['estimate'])) { echo '( ~ ' . $data['governance']['estimate'] . ' )'; } ?></p>
-      <p class="stat"><span class="label">Governance Objects:</span> <a target="_blank" hrf="https://proposals.terracoin.io/"><?php if (isset($data['gobjects'])) { echo $data['gobjects']; } else { echo "N/A"; } ?></a></p>
+      <p class="stat"><span class="label">Governance Objects:</span> <a target="_blank" href="https://proposals.terracoin.io/"><?php if (isset($data['gobjects'])) { echo $data['gobjects']; } else { echo "N/A"; } ?></a></p>
 <?php if (isset($config['display_masternode_status']) && $config['display_masternode_status']) { ?>
       <p class="stat"><span class="label">Masternode Status:</span> <?php if (isset($data['masternode']['status'])) { echo $data['masternode']['status']; } else { echo "Not a masternode"; } ?></p>
 <?php } ?>
