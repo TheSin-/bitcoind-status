@@ -132,15 +132,19 @@ function getData($from_cache = false)
         $remote_curl = curl_init();
     }
 
+    $data['max_height'] = 0;
     // Get max height from masternode.terracoin.io
     if ($config['display_max_height'] === true) {
-        if ($config['display_testnet'] === true) {
-            $data['max_height'] = 0;
-        } else {
+        if ($config['display_testnet'] !== true)
             $data['max_height'] = curlRequest("https://masternode.terracoin.io/height.php", $remote_curl);
-        }
         $data['node_height_percent'] = round(($data['blocks']/$data['max_height'])*100, 1);
     }
+
+    $height = $data['blocks'];
+    if ($data['max_height'] > 0)
+        $height = $data['max_height'];
+
+    $data['governance']['estimate'] = format_time((($data['governance']['nextsuperblock'] - $height) * 2.12));
 
     if (($config['display_ip_location'] === true) || ($config['geolocate_peer_ip'] === true)) {
         curl_close($geo_curl);
@@ -479,4 +483,20 @@ function getProcessUptime($process)
     $mins = str_pad(floor(($seconds - ($days*86400) - ($hours*3600)) / 60), 2, "0", STR_PAD_LEFT);
     $secs = str_pad(floor($seconds % 60), 2, "0", STR_PAD_LEFT);
     return "$days days, $hours:$mins:$secs";
+}
+
+/**
+ * Return a string of time
+ *
+ * @param int $minuts The total amount of minutes
+ *
+ * @return string A textual representation minutes in height denominations
+ */
+function format_time($minutes)
+{
+    $zero    = new DateTime('@0');
+    $offset  = new DateTime('@' . $minutes * 60);
+    $diff    = $zero->diff($offset);
+
+    return $diff->format('%a Days, %h Hours, %i Minutes');
 }
