@@ -495,7 +495,7 @@ function getProcessUptime($process)
 function format_time($minutes)
 {
     $zero    = new DateTime('@0');
-    $offset  = new DateTime('@' . $minutes * 60);
+    $offset  = new DateTime('@' . round(intval($minutes)) * 60);
     $diff    = $zero->diff($offset);
 
     return $diff->format('%a Days, %h Hours, %i Minutes');
