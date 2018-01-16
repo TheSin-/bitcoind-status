@@ -77,7 +77,7 @@ function getData($from_cache = false)
     }
 
     $data['governance'] = $terracoin->getgovernanceinfo();
-    $data['gobject'] = preg_replace('/^Governance Objects: /', '', $terracoin->gobject('count'));
+    $data['gobjects'] = preg_replace('/^Governance Objects: /', '', $terracoin->gobject('count'));
 
     $data['masternode'] = array();
     $data['masternode']['count'] = $terracoin->masternode('count');
