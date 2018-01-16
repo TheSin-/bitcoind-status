@@ -19,7 +19,7 @@
   <script src="js/sorttable.js"></script>
   <script src="js/trc-status.js"></script>
 <?php if (is_file('./php/google_analytics.inc')) { include './php/google_analytics.inc'; } ?>
-<?php if (($data['display_connection_chart'] === true) || ($data['display_peer_chart'] === true) || ($data['display_masternode_chart'] === true)) { ?>
+<?php if (($data['display_connection_chart'] === true) || ($data['display_peer_chart'] === true) || ($data['display_masternode_chart'] === true) || ($data['display_difficulty_chart'] === true)) { ?>
   <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
   <script type="text/javascript">
       $(window).resize(function() {
@@ -38,6 +38,9 @@
 <?php } ?>
 <?php if ($data['display_masternode_chart'] === true) { ?>
         drawMasternodeChart();
+<?php } ?>
+<?php if ($data['display_difficulty_chart'] === true) { ?>
+        drawDifficultyChart();
 <?php } ?>
       });
   </script>
@@ -74,6 +77,18 @@
         var data = google.visualization.arrayToDataTable(masternodeChartData);
         var options = { title: 'Masternode History', legend: { position: 'bottom' }};
         var chart = new google.visualization.LineChart(document.getElementById('masternode_chart'));
+        chart.draw(data, options);
+      }
+  </script>
+<?php } ?>
+<?php if ($data['display_difficulty_chart'] === true) { ?>
+  <script type="text/javascript" src="chartdata.php?stat=difficulty"></script>
+  <script type="text/javascript">
+      google.setOnLoadCallback(drawDifficultyChart);
+      function drawDifficultyChart() {
+        var data = google.visualization.arrayToDataTable(difficultyChartData);
+        var options = { title: 'Difficulty History', legend: { position: 'bottom' }};
+        var chart = new google.visualization.LineChart(document.getElementById('difficulty_chart'));
         chart.draw(data, options);
       }
   </script>
@@ -136,6 +151,9 @@
       <p class="stat"><span class="label">Network Height:</span> <?php echo number_format($data['max_height'],0); ?></p>
 <?php } ?>
       <p class="stat"><span class="label">Difficulty:</span> <?php echo number_format($data['difficulty'],3); ?></p>
+<?php if ($data['display_difficulty_chart'] === true) { ?>
+      <div id="difficulty_chart" style="width: 100%;"></div>
+<?php } ?>
 <?php if (isset($config['display_testnet']) && $config['display_testnet']) { ?>
       <p class="stat"><span class="label">Testnet:</span> <?php echo ($data['testnet']) ? "Yes" : "No"; ?></p>
 <?php } ?>

@@ -56,6 +56,7 @@ $config = array(
   'chart_min_data_points'     => 5,
   'display_peer_chart'        => false,
   'display_masternode_chart'  => false,
+  'display_difficulty_chart'  => false,
   'node_links'                => array(),
 
   // Stats
@@ -72,6 +73,10 @@ $config = array(
   // Masternode Count
   'masternodecount_file'      => '/tmp/terracoind-mns.data',
   'masternodecount_max_age'   => '2592000',
+
+  // Difficulty
+  'difficulty_file'           => '/tmp/terracoind-difficulty.data',
+  'difficulty_max_age'        => '2592000',
 
   // Uptime
   'display_terracoind_uptime' => false,

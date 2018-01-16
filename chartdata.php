@@ -48,6 +48,14 @@ case 'masternode':
     $postfixes  = array('*1000)','','');
     break;
 
+case 'difficulty':
+    $data_file  = $config['difficulty_file'];
+    $min_points = $config['chart_min_data_points'];
+    $headers    = array('Date','Difficulty');
+    $prefixes   = array('new Date(','','');
+    $postfixes  = array('*1000)','','');
+    break;
+
 default:
     die('Invalid value passed to stat');
 }

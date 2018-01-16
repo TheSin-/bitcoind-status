@@ -28,10 +28,12 @@ To use Google Analytics, simply create a file called `google_analytics.inc` insi
 
 The script can also periodically collect the current number of connections as well as peer protocol versions and store it for display via Google Charts on your status page.
 
-To do this, just schedule the `/stats.php` script as well as the `/peercount.php` script to be called at whatever interval you like, then `config.php` to enable the chart display. You can optionally tweak the settings under the "Stats" and "Node Count" sections if you want to keep more or less data.
+To do this, just schedule the `/stats.php`, `/peercount.php`, `masternodecount.php`, `difficulty.php` scripts to be called at whatever interval you like, then `config.php` to enable the chart display. You can optionally tweak the settings under each section if you want to keep more or less data.
 
 * `/stats.php` will create a graph showing the number of connections over time.
 * `/peercount.php` will create a graph showing the most common protocol versions over time.
+* `/masternodecount.php` will create a graph showing the masternode and enabled counts over time.
+* `/difficulty.php` will create a graph showing the difficulty over time.
 
 Below are two example `crontab` entries to call the scripts every five minutes via `curl`. It is **highly recommended** to only allow `127.0.0.1` to call the script, as allowing other IP addresses could lead to your node becoming vulnerable to DDoS attacks.
 
@@ -39,6 +41,7 @@ Below are two example `crontab` entries to call the scripts every five minutes v
 */5 *  *   *   *  curl -Ssk http://127.0.0.1/stats.php > /dev/null
 */5 *  *   *   *  curl -Ssk http://127.0.0.1/peercount.php > /dev/null
 */5 *  *   *   *  curl -Ssk http://127.0.0.1/masternodecount.php > /dev/null
+*/5 *  *   *   *  curl -Ssk http://127.0.0.1/difficulty.php > /dev/null
 ```
 
 ## Node Profile Icons
