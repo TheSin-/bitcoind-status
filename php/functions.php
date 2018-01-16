@@ -76,8 +76,13 @@ function getData($from_cache = false)
         $data['free_disk_space'] = getFreeDiskSpace($config['disk_space_mount_point']);
     }
 
-    if ($config['display_masternode'] === true) {
-        $data['masternode'] = array();
+    $data['governance'] = $terracoin->getgovernanceinfo();
+    $data['gobject'] = preg_replace('/^Governance Objects: /', '', $terracoin->gobject('count'));
+
+    $data['masternode'] = array();
+    $data['masternode']['count'] = $terracoin->masternode('count');
+    $data['masternode']['enabled'] = $terracoin->masternode('count', 'enabled');
+    if ($config['display_masternode_status'] === true) {
         // Store network info in data array
         $data['masternode_status_info'] = $terracoin->masternode('status');
         $data['masternode']['status'] = $data['masternode_status_info']['status'];
@@ -86,8 +91,6 @@ function getData($from_cache = false)
             $data['masternode_waller_info'] = $terracoin->masternode('list', 'status', $vin);
             $data['masternode']['status'] = $data['masternode_waller_info'][$vin];
         }
-        $data['masternode']['count'] = $terracoin->masternode('count');
-        $data['masternode']['enabled'] = $terracoin->masternode('count', 'enabled');
     }
 
     // Store network info in data array
