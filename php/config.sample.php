@@ -101,3 +101,4 @@ $config = array(
   'debug'                     => false,
   'admin_email'               => 'admin@example.com',
 );
+?>

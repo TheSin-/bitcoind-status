@@ -119,3 +119,4 @@ foreach ($data as $row) {
 
 // Finish output
 echo "]";
+?>

@@ -103,3 +103,4 @@ for ($i = 0; $i < count($data); $i++) {
 if (file_put_contents($config['peercount_file'], json_encode($data), LOCK_EX) === false) {
     die("Failure storing data");
 }
+?>

@@ -42,3 +42,4 @@ $data = getData($use_cache);
 
 // Add the IP of the server, and include template
 require_once './html/template.html';
+?>

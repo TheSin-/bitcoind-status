@@ -212,3 +212,4 @@ class Bitcoin
         return $this->response['result'];
     }
 }
+?>

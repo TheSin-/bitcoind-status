@@ -508,3 +508,4 @@ function format_time($minutes)
 
     return $diff->format('%a Days, %h Hours, %i Minutes');
 }
+?>
