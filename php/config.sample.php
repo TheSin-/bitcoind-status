@@ -34,7 +34,7 @@ $config = array(
   // Cache
   'cache_geo_data'            => false,
   'geo_cache_file'            => '/var/tmp/terracoind-geolocation.cache',
-  'geo_cache_time'            => 604800,
+  'geo_cache_time'            => 7 * 24 * 60 * 60, // 1 week
   'use_cache'                 => true,
   'cache_file'                => '/tmp/terracoind-status.cache',
   'max_cache_time'            => 300,
@@ -63,21 +63,21 @@ $config = array(
   // Stats
   'stats_whitelist'           => array('127.0.0.1'),
   'stats_file'                => '/tmp/terracoind-status.data',
-  'stats_max_age'             => '604800',
+  'stats_max_age'             => 2 * 24 * 60 * 60, // 2 days
 
   // Node Count
   'peercount_whitelist'       => array('127.0.0.1'),
   'peercount_file'            => '/tmp/terracoind-peers.data',
-  'peercount_max_age'         => '2592000',
+  'peercount_max_age'         => 2 * 24 * 60 * 60, // 2 days
   'peercount_extra_nodes'     => array(),
 
   // Masternode Count
   'masternodecount_file'      => '/tmp/terracoind-mns.data',
-  'masternodecount_max_age'   => '2592000',
+  'masternodecount_max_age'   => 2 * 24 * 60 * 60, // 2 days
 
   // Difficulty
   'difficulty_file'           => '/tmp/terracoind-difficulty.data',
-  'difficulty_max_age'        => '2592000',
+  'difficulty_max_age'        => 2 * 24 * 60 * 60, // 2 days
 
   // Uptime
   'display_terracoind_uptime' => false,
