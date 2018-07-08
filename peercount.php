@@ -72,21 +72,23 @@ foreach ($node_types as $key => $val) {
     $to_insert[$key] = 0;
 }
 
- // Loop through peers
-foreach ($new_peers as $peer) {
+// Loop through peers
+if (!empty($new_peers)) {
+    foreach ($new_peers as $peer) {
 
-    // Default peer counter
-    $peer_type = 'other';
+        // Default peer counter
+        $peer_type = 'other';
 
-    // Check peer against array
-    foreach ($node_types as $key => $regex) {
-        if (strpos(strtolower($peer['subver']), strtolower($regex)) !== false) {
-            $peer_type = $key;
+        // Check peer against array
+        foreach ($node_types as $key => $regex) {
+            if (strpos(strtolower($peer['subver']), strtolower($regex)) !== false) {
+                $peer_type = $key;
+            }
         }
-    }
 
-    // Increment counters
-    $to_insert[$peer_type] = $to_insert[$peer_type]+1;
+        // Increment counters
+        $to_insert[$peer_type] = $to_insert[$peer_type]+1;
+    }
 }
 
 // Insert data
