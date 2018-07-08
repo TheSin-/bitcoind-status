@@ -28,12 +28,13 @@ To use Google Analytics, simply create a file called `google_analytics.inc` insi
 
 The script can also periodically collect the current number of connections as well as peer protocol versions and store it for display via Google Charts on your status page.
 
-To do this, just schedule the `/stats.php`, `/peercount.php`, `masternodecount.php`, `difficulty.php` scripts to be called at whatever interval you like, then `config.php` to enable the chart display. You can optionally tweak the settings under each section if you want to keep more or less data.
+To do this, just schedule the `/stats.php`, `/peercount.php`, `masternodecount.php`, `difficulty.php`, `sysstats.php` scripts to be called at whatever interval you like, then `config.php` to enable the chart display. You can optionally tweak the settings under each section if you want to keep more or less data.
 
 * `/stats.php` will create a graph showing the number of connections over time.
 * `/peercount.php` will create a graph showing the most common protocol versions over time.
 * `/masternodecount.php` will create a graph showing the masternode and enabled counts over time.
 * `/difficulty.php` will create a graph showing the difficulty over time.
+* `/sysstats.php` will create a graph showing the load/memory over time.
 
 Below are two example `crontab` entries to call the scripts every five minutes via `curl`. It is **highly recommended** to only allow `127.0.0.1` to call the script, as allowing other IP addresses could lead to your node becoming vulnerable to DDoS attacks.
 
@@ -42,6 +43,7 @@ Below are two example `crontab` entries to call the scripts every five minutes v
 */5 *  *   *   *  curl -Ssk http://127.0.0.1/peercount.php > /dev/null
 */5 *  *   *   *  curl -Ssk http://127.0.0.1/masternodecount.php > /dev/null
 */5 *  *   *   *  curl -Ssk http://127.0.0.1/difficulty.php > /dev/null
+*/5 *  *   *   *  curl -Ssk http://127.0.0.1/sysstats.php > /dev/null
 ```
 
 ## Node Profile Icons
@@ -153,6 +155,9 @@ The `config.php` file also contains lots of options to control how the applicati
 | `chart_min_data_points`    | Int     | `5`       | Minimum data points to collect before displaying chart                                                          |
 | `display_peer_chart`       | Boolean | `false`   | Displays a chart showing the mix of node versions connected to your node                                        |
 | `display_masternode_chart` | Boolean | `false`   | Displays a chart showing the enabled vs total masternodes                                                       |
+| `display_difficulty_chart` | Boolean | `false`   | Displays a chart showing the difficulty                                                                         |
+| `display_load_chart`       | Boolean | `false`   | Displays a chart showing the system load                                                                        |
+| `display_memory_chart`     | Boolean | `false`   | Displays a chart showing the system memory, swap and total percentage used                                      |
 | `node_links`               | Array   | `array()` | Displays links to various other profiles for your node. Takes the form of a multidimensional array, see example |
 
 ### Stats
@@ -178,6 +183,27 @@ The `config.php` file also contains lots of options to control how the applicati
 |-----------------------------|---------|------------------------------|--------------------------------------------------------------|
 | `masternodecount_file`      | String  | `/tmp/terracoind-mns.data`   | File to store masternode-count                               |
 | `masternodecount_max_age`   | String  | `604800`                     | Maximum age for masternode-count                             |
+
+### Network Difficulty
+
+| Value                       | Type    | Default                      | Explanation                                                  |
+|-----------------------------|---------|------------------------------|--------------------------------------------------------------|
+| `difficulty_file`           | String  | `/tmp/terracoind-difficulty.data`| File to store diffculty                                  |
+| `difficulty_max_age`        | String  | `604800`                     | Maximum age for difficulty                                   |
+
+### System Load Average
+
+| Value                       | Type    | Default                      | Explanation                                                  |
+|-----------------------------|---------|------------------------------|--------------------------------------------------------------|
+| `load_file`                 | String  | `/tmp/terracoind-load.data`  | File to store system load                                    |
+| `load_max_age`              | String  | `604800`                     | Maximum age for system load                                  |
+
+### System Memory Usage
+
+| Value                       | Type    | Default                      | Explanation                                                  |
+|-----------------------------|---------|------------------------------|--------------------------------------------------------------|
+| `memory_file`               | String  | `/tmp/terracoind-memory.data`| File to store system memory usage                            |
+| `memory_max_age`            | String  | `604800`                     | Maximum age for system memory                                |
 
 ### Uptime
 
