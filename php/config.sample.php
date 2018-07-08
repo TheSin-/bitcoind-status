@@ -58,6 +58,8 @@ $config = array(
   'display_peer_chart'        => false,
   'display_masternode_chart'  => false,
   'display_difficulty_chart'  => false,
+  'display_load_chart'        => false,
+  'display_memory_chart'      => false,
   'node_links'                => array(),
 
   // Stats
@@ -78,6 +80,14 @@ $config = array(
   // Difficulty
   'difficulty_file'           => '/tmp/terracoind-difficulty.data',
   'difficulty_max_age'        => 2 * 24 * 60 * 60, // 2 days
+
+  // System Load
+  'load_file'                 => '/tmp/terracoind-sysload.data',
+  'load_max_age'              => 2 * 24 * 60 * 60, // 2 days
+
+  // System Memory
+  'memory_file'               => '/tmp/terracoind-sysmem.data',
+  'memory_max_age'            => 2 * 24 * 60 * 60, // 2 days
 
   // Uptime
   'display_terracoind_uptime' => false,

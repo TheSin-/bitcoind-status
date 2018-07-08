@@ -61,6 +61,8 @@ function getData($from_cache = false)
         $return_data['display_peer_chart'] = false;
         $return_data['display_masternode_chart'] = false;
         $return_data['display_difficulty_chart'] = false;
+        $return_data['display_load_chart'] = false;
+        $return_data['display_memory_chart'] = false;
         writeToCache($return_data);
         return $return_data;
     }
@@ -159,6 +161,8 @@ function getData($from_cache = false)
     $data['display_peer_chart'] = displayChart($config['display_peer_chart'], $config['peercount_file'], $config['chart_min_data_points']);
     $data['display_masternode_chart'] = displayChart($config['display_masternode_chart'], $config['masternodecount_file'], $config['chart_min_data_points']);
     $data['display_difficulty_chart'] = displayChart($config['display_difficulty_chart'], $config['difficulty_file'], $config['chart_min_data_points']);
+    $data['display_load_chart'] = displayChart($config['display_load_chart'], $config['load_file'], $config['chart_min_data_points']);
+    $data['display_memory_chart'] = displayChart($config['display_memory_chart'], $config['memory_file'], $config['chart_min_data_points']);
 
     // Write geolocation cache
     if ($config['cache_geo_data'] === true) {

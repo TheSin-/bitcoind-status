@@ -29,8 +29,8 @@ case 'peer':
     $data_file  = $config['peercount_file'];
     $min_points = $config['chart_min_data_points'];
     $headers    = array('Date','Other','Core');
-    $prefixes   = array('new Date(','','','','','');
-    $postfixes  = array('*1000)','','','','','');
+    $prefixes   = array('new Date(','','');
+    $postfixes  = array('*1000)','','');
 
     foreach ($config['peercount_extra_nodes'] as $key => $val) {
         $headers[]   = $val;
@@ -52,8 +52,24 @@ case 'difficulty':
     $data_file  = $config['difficulty_file'];
     $min_points = $config['chart_min_data_points'];
     $headers    = array('Date','Difficulty');
-    $prefixes   = array('new Date(','','');
-    $postfixes  = array('*1000)','','');
+    $prefixes   = array('new Date(','');
+    $postfixes  = array('*1000)','');
+    break;
+
+case 'load':
+    $data_file  = $config['load_file'];
+    $min_points = $config['chart_min_data_points'];
+    $headers    = array('Date','Load');
+    $prefixes   = array('new Date(','');
+    $postfixes  = array('*1000)','');
+    break;
+
+case 'memory':
+    $data_file  = $config['memory_file'];
+    $min_points = $config['chart_min_data_points'];
+    $headers    = array('Date','Memory','Swap','Total');
+    $prefixes   = array('new Date(','','','');
+    $postfixes  = array('*1000)','','','');
     break;
 
 default:
