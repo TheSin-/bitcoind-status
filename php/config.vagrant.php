@@ -32,10 +32,10 @@ $config = array(
 
   // Cache
   'cache_geo_data'            => true,
-  'geo_cache_file'            => '/var/tmp/terracoind-geolocation.cache',
+  'geo_cache_file'            => '/tmp/terracoind-geolocation.cache',
   'geo_cache_time'            => 7 * 24 * 60 * 60, // 1 week
   'use_cache'                 => false,
-  'cache_file'                => '/var/tmp/terracoind-status.cache',
+  'cache_file'                => '/tmp/terracoind-status.cache',
   'max_cache_time'            => 300,
   'nocache_whitelist'         => array('127.0.0.1'),
 
@@ -63,12 +63,12 @@ $config = array(
 
   // Stats
   'stats_whitelist'           => array('127.0.0.1'),
-  'stats_file'                => '/var/tmp/terracoind-status.data',
+  'stats_file'                => '/tmp/terracoind-status.data',
   'stats_max_age'             => 2 * 24 * 60 * 60, // 2 days
 
   // Node Count
   'peercount_whitelist'       => array('127.0.0.1'),
-  'peercount_file'            => '/var/tmp/terracoind-peers.data',
+  'peercount_file'            => '/tmp/terracoind-peers.data',
   'peercount_max_age'         => 2 * 24 * 60 * 60, // 2 days
   'peercount_extra_nodes'     => array(),
 

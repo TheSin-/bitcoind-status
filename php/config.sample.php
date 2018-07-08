@@ -33,7 +33,7 @@ $config = array(
 
   // Cache
   'cache_geo_data'            => false,
-  'geo_cache_file'            => '/var/tmp/terracoind-geolocation.cache',
+  'geo_cache_file'            => '/tmp/terracoind-geolocation.cache',
   'geo_cache_time'            => 7 * 24 * 60 * 60, // 1 week
   'use_cache'                 => true,
   'cache_file'                => '/tmp/terracoind-status.cache',
