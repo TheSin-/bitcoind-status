@@ -166,7 +166,7 @@ The `config.php` file also contains lots of options to control how the applicati
 |-------------------------|--------|-------------------------------|--------------------------------------------------------|
 | `stats_whitelist`       | Array  | `array('127.0.0.1')`          | Hosts that can run the stats script                    |
 | `stats_file`            | String | `/tmp/terracoind-status.data` | File to store stats                                    |
-| `stats_max_age`         | String | `604800`                      | Maximum age for stats                                  |
+| `stats_max_age`         | String | `172800`                      | Maximum age for stats                                  |
 
 ### Peer Count Stats
 
@@ -174,7 +174,7 @@ The `config.php` file also contains lots of options to control how the applicati
 |-----------------------------|---------|------------------------------|--------------------------------------------------------------|
 | `peercount_whitelist`       | Array   | `array('127.0.0.1')`         | Hosts that can run the host-count script                     |
 | `peercount_file`            | String  | `/tmp/terracoind-peers.data` | File to store host-count                                     |
-| `peercount_max_age`         | String  | `604800`                     | Maximum age for host-count                                   |
+| `peercount_max_age`         | String  | `172800`                     | Maximum age for host-count                                   |
 | `peercount_extra_nodes`     | Array   | `array()`                    | Key-Value array of extra node types to count (value = regex) |
 
 ### Masternode Count Stats
@@ -182,28 +182,28 @@ The `config.php` file also contains lots of options to control how the applicati
 | Value                       | Type    | Default                      | Explanation                                                  |
 |-----------------------------|---------|------------------------------|--------------------------------------------------------------|
 | `masternodecount_file`      | String  | `/tmp/terracoind-mns.data`   | File to store masternode-count                               |
-| `masternodecount_max_age`   | String  | `604800`                     | Maximum age for masternode-count                             |
+| `masternodecount_max_age`   | String  | `172800`                     | Maximum age for masternode-count                             |
 
 ### Network Difficulty
 
 | Value                       | Type    | Default                      | Explanation                                                  |
 |-----------------------------|---------|------------------------------|--------------------------------------------------------------|
 | `difficulty_file`           | String  | `/tmp/terracoind-difficulty.data`| File to store diffculty                                  |
-| `difficulty_max_age`        | String  | `604800`                     | Maximum age for difficulty                                   |
+| `difficulty_max_age`        | String  | `172800`                     | Maximum age for difficulty                                   |
 
 ### System Load Average
 
 | Value                       | Type    | Default                      | Explanation                                                  |
 |-----------------------------|---------|------------------------------|--------------------------------------------------------------|
-| `load_file`                 | String  | `/tmp/terracoind-load.data`  | File to store system load                                    |
-| `load_max_age`              | String  | `604800`                     | Maximum age for system load                                  |
+| `load_file`                 | String  | `/tmp/terracoind-sysload.data`| File to store system load                                   |
+| `load_max_age`              | String  | `172800`                     | Maximum age for system load                                  |
 
 ### System Memory Usage
 
 | Value                       | Type    | Default                      | Explanation                                                  |
 |-----------------------------|---------|------------------------------|--------------------------------------------------------------|
-| `memory_file`               | String  | `/tmp/terracoind-memory.data`| File to store system memory usage                            |
-| `memory_max_age`            | String  | `604800`                     | Maximum age for system memory                                |
+| `memory_file`               | String  | `/tmp/terracoind-sysmem.data`| File to store system memory usage                            |
+| `memory_max_age`            | String  | `172800`                     | Maximum age for system memory                                |
 
 ### Uptime
 
@@ -225,6 +225,7 @@ The `config.php` file also contains lots of options to control how the applicati
 #### Important Note
 
   *  **Do not** disable cache unless you either have an alternative mechanism or your node is protected from potential DDoS attacks.
+  *  If you use /tmp for cache data it will reset on reboot.
 
 ## Licensing
 
